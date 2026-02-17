@@ -1,0 +1,11 @@
+{
+  "signals": [],
+  "stats": {
+    "total_presented": 18,
+    "total_queued": 0,
+    "total_skipped": 0,
+    "hit_rate": 0
+  },
+  "sender_reputation": {},
+  "topic_patterns": {}
+}

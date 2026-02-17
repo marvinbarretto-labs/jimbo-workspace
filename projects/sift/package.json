@@ -1,0 +1,17 @@
+{
+  "name": "sift",
+  "version": "0.1.0",
+  "description": "Email intelligence system — extracting signal from noise",
+  "main": "src/index.ts",
+  "scripts": {
+    "digest": "ts-node scripts/run-digest.ts"
+  },
+  "keywords": ["email", "intelligence", "curation"],
+  "author": "Jimbo (marvinbarretto.labs@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
