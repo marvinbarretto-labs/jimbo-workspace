@@ -122,3 +122,10 @@ Specs stored in workspace for future automation or manual test runs.
 ---
 
 _This document grows with the project. Every significant decision, conversation, and milestone gets captured here._
+
+## Development Diary
+
+🧠 **See also:** `/home/openclaw/.openclaw/workspace/SIFT_DIARY.md` — day-to-day reflections, learnings, and ideas during development.
+
+For broader cross-project diary, check: `/home/openclaw/.openclaw/workspace/JIMBO_DIARY.md`.
+
