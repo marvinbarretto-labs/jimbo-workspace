@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Unsubscriber Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+    .newsletter { background: #fff3cd; border: 1px solid #ffc107; padding: 1rem; margin: 0.5rem 0; border-radius: 4px; }
+    .name { font-weight: bold; color: #856404; }
+    .stats { margin-left: 1rem; font-size: 0.9rem; color: #666; }
+    .time-waste { color: #dc3545; font-weight: bold; }
+    .actions { margin: 1rem 0; }
+    button { margin: 0.25rem; padding: 0.5rem 1rem; cursor: pointer; }
+    .result { background: #d4edda; padding: 1rem; margin-top: 1rem; border-radius: 4px; }
+    h1 { color: #333; }
+  </style>
+</head>
+<body>
+  <h1>✉️ Smart Unsubscriber</h1>
+  <p>Analysis of your newsletter engagement over the last 30 days:</p>
+
+  <div id="candidates"></div>
+
+  <div class="actions">
+    <h3>What would you like to do?</h3>
+    <button onclick="handleAction(1)">Unsubscribe ALL of the above (one click, batch)</button>
+    <button onclick="handleAction(2)">Unsubscribe selectively</button>
+    <button onclick="handleAction(3)">Keep them (maybe I'll start featuring something interesting)</button>
+    <button onclick="handleAction(4)">Defer decision (ask again in 2 weeks)</button>
+  </div>
+
+  <div id="result" class="result" style="display:none;"></div>
+
+  <script>
+    const newsletters = [
+      { name: 'Bytes.dev', email: 'newsletter@bytes.dev', total: 28, queued: 25, skipped: 3, last: '2026-02-17' },
+      { name: 'JS Weekly', email: 'weekly@jsweekly.com', total: 24, queued: 22, skipped: 2, last: '2026-02-17' },
+      { name: 'Product Hunt Daily', email: 'newsletter@producthunt.com', total: 30, queued: 2, skipped: 28, last: '2026-02-16' },
+      { name: 'Hacker Newsletter', email: 'hn@hackernewsletter.com', total: 26, queued: 18, skipped: 8, last: '2026-02-17' },
+      { name: 'TechCrunch Daily', email: 'newsletter@techcrunch.com', total: 29, queued: 1, skipped: 28, last: '2026-02-15' },
+      { name: 'Marketing Tips Weekly', email: 'tips@marketingtips.com', total: 12, queued: 0, skipped: 12, last: '2026-02-10' }
+    ];
+
+    const skipThreshold = 0.8;
+    const candidates = newsletters.filter(n => n.skipped / n.total >= skipThreshold && n.queued === 0);
+
+    const container = document.getElementById('candidates');
+
+    if (candidates.length === 0) {
+      container.innerHTML = '<p>✅ No newsletters meet the "consistently skipped" threshold. Good job curating!</p>';
+    } else {
+      container.innerHTML = `<h3>📊 Newsletters you consistently skip (${candidates.length} found):</h3>`;
+      candidates.forEach((n, i) => {
+        const skipRate = Math.round(n.skipped / n.total * 100);
+        const timeWasted = Math.round(n.total * 2.5);
+        container.innerHTML += `
+          <div class="newsletter">
+            <span class="name">${i+1}. ${n.name}</span> <small>&lt;${n.email}&gt;</small><br>
+            <div class="stats">
+              Received: ${n.total}, Queued: ${n.queued}, Skipped: ${n.skipped} (${skipRate}%)<br>
+              <span class="time-waste">Est. time wasted: ~${timeWasted} minutes/month</span>
+            </div>
+          </div>`;
+      });
+    }
+
+    function handleAction(action) {
+      const result = document.getElementById('result');
+      let text = '';
+      if (action === 1) {
+        text = `✂️ Processing batch unsubscribe...`;
+        candidates.forEach(n => {
+          text += `<br>✓ Generated unsubscribe link for ${n.name}`;
+        });
+        text += `<br><br>Total unsubscribe links ready. Want me to open them or just save for later?`;
+      } else if (action === 2) {
+        text = `Pick which ones to unsubscribe:<br>(would show multi-select list here)`;
+      } else if (action === 3) {
+        text = `🤔 Okay. If you keep receiving them, I'll try to identify interesting content you might have missed. Consider tweaking your classifier to highlight potential gems.`;
+      } else {
+        text = `⏸️ Deferred. I'll ask again in 2 weeks.`;
+      }
+      result.innerHTML = text;
+      result.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
