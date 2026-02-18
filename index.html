@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📧 Email Tools by Sift</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+    header h1 { font-size: 36px; margin-bottom: 10px; }
+    header p { font-size: 18px; opacity: 0.9; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .card h2 { font-size: 20px; margin-bottom: 10px; color: #333; }
+    .card p { color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+    .card a {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .card a:hover { background: #5a6fd8; }
+    footer {
+      text-align: center;
+      color: white;
+      opacity: 0.8;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📧 Email Tools by Sift</h1>
+      <p>Four experiments to help you manage your inbox smarter</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>🔍 Redundancy Radar</h2>
+        <p>Detects duplicate emails across your subscriptions and helps you choose which source to keep. Clean up your reading queue.</p>
+        <a href="redundancy-radar.html">Open Tool</a>
+      </div>
+
+      <div class="card">
+        <h2>🚀 Smart Unsubscriber</h2>
+        <p>Analyzes your newsletters and provides one-click unsubscribe buttons. Tame the inbox beast.</p>
+        <a href="smart-unsubscriber.html">Open Tool</a>
+      </div>
+
+      <div class="card">
+        <h2>🎯 What Did I Miss?</h2>
+        <p>Queries skipped but high-reputation items. Find interesting emails you might have glossed over but would normally queue.</p>
+        <a href="what-did-i-miss.html">Open Tool</a>
+      </div>
+
+      <div class="card">
+        <h2>📊 Content Gaps</h2>
+        <p>Proactive subscription suggestions based on your interests. Discover quality newsletters you're missing.</p>
+        <a href="content-gaps.html">Open Tool</a>
+      </div>
+    </div>
+
+    <footer>
+      Built with curiosity. Deployed with GitHub Pages.
+    </footer>
+  </div>
+</body>
+</html>
