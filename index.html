@@ -180,6 +180,8 @@
       <button class="filter-btn" data-filter="productivity">Productivity</button>
       <button class="filter-btn" data-filter="experiment">Experiments</button>
       <button class="filter-btn" data-filter="diary">Development</button>
+      <button class="filter-btn" data-filter="dev-tools">Dev Tools</button>
+      <button class="filter-btn" data-filter="ai">AI & Automation</button>
     </div>
 
     <div class="grid" id="tools-grid">
@@ -255,31 +257,168 @@
         <a href="https://github.com/marvinbarretto-labs/jimbo-workspace/blob/master/JIMBO_DIARY.md" target="_blank" class="card-action">Read Diary</a>
       </div>
 
-      <!-- Coming Soon / Ideas -->
+      <!-- Email Intelligence Ideas -->
       <div class="card coming-soon" data-category="experiment">
         <div class="card-header">
-          <div class="card-icon">💡</div>
+          <div class="card-icon">🧵</div>
           <span class="card-status status-idea">Idea</span>
         </div>
-        <h3 class="card-title">Inbox Zero Timer</h3>
-        <p class="card-desc">Pomodoro-style timer with email processing bursts. Track time spent and celebrate clean inbox milestones.</p>
+        <h3 class="card-title">Thread Summarizer</h3>
+        <p class="card-desc">AI-powered email thread summarization. Condense long discussions into key decisions and action items. Parse tone and consensus.</p>
         <div class="card-tags">
-          <span class="tag">productivity</span>
-          <span class="tag">timer</span>
+          <span class="tag">email</span>
+          <span class="tag">ai</span>
+          <span class="tag">nlp</span>
         </div>
         <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
       </div>
 
-      <div class="card coming-soon" data-category="experiment">
+      <div class="card coming-soon" data-category="email">
         <div class="card-header">
-          <div class="card-icon">🤖</div>
+          <div class="card-icon">📎</div>
           <span class="card-status status-idea">Idea</span>
         </div>
-        <h3 class="card-title">Auto-Responder Lab</h3>
-        <p class="card-desc">Template builder for smart auto-replies with vacation detection and sender reputation gating.</p>
+        <h3 class="card-title">Attachment Finder</h3>
+        <p class="card-desc">Search all attachments across your email history by filename, type, or content. Never lose that PDF again.</p>
         <div class="card-tags">
-          <span class="tag">automation</span>
           <span class="tag">email</span>
+          <span class="tag">search</span>
+          <span class="tag">productivity</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="email">
+        <div class="card-header">
+          <div class="card-icon">📅</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Meeting Scheduler</h3>
+        <p class="card-desc">Parse emails for time suggestions and auto-generate calendar invites. Understands "next Tuesday" and timezone conversions.</p>
+        <div class="card-tags">
+          <span class="tag">email</span>
+          <span class="tag">calendar</span>
+          <span class="tag">automation</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="email">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Priority Inbox AI</h3>
+        <p class="card-desc">Machine learning model that categorizes emails by urgency and importance. Learns from your queue/skip actions over time.</p>
+        <div class="card-tags">
+          <span class="tag">email</span>
+          <span class="tag">ai</span>
+          <span class="tag">ml</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="productivity">
+        <div class="card-header">
+          <div class="card-icon">⏰</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Reply Later Snooze</h3>
+        <p class="card-desc">Snooze emails with smart reminders. Returns when you're likely to act, not just when it's convenient.</p>
+        <div class="card-tags">
+          <span class="tag">productivity</span>
+          <span class="tag">email</span>
+          <span class="tag">automation</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="dev-tools">
+        <div class="card-header">
+          <div class="card-icon">🔀</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Code Review Assistant</h3>
+        <p class="card-desc">AI-powered PR review hints. Spot common patterns, suggest improvements, calculate diff complexity. Integrates with GitHub.</p>
+        <div class="card-tags">
+          <span class="tag">dev-tools</span>
+          <span class="tag">ai</span>
+          <span class="tag">github</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="dev-tools">
+        <div class="card-header">
+          <div class="card-icon">🚀</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Deploy Dashboard</h3>
+        <p class="card-desc">Monitor deployments across Spoons, LocalShout, and other projects. Real-time status, rollback triggers, and health checks.</p>
+        <div class="card-tags">
+          <span class="tag">dev-tools</span>
+          <span class="tag">monitoring</span>
+          <span class="tag">firebase</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="dev-tools">
+        <div class="card-header">
+          <div class="card-icon">🔌</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">API Tester Lab</h3>
+        <p class="card-desc">Quick API endpoint tester with request history, saved collections, and response schema validation. No more curl guessing.</p>
+        <div class="card-tags">
+          <span class="tag">dev-tools</span>
+          <span class="tag">api</span>
+          <span class="tag">testing</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="dev-tools">
+        <div class="card-header">
+          <div class="card-icon">📝</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Log Stream Viewer</h3>
+        <p class="card-desc">Real-time log tailing with filtering, highlighting, and pattern detection. Connect to Firebase, VPS, or local files.</p>
+        <div class="card-tags">
+          <span class="tag">dev-tools</span>
+          <span class="tag">logging</span>
+          <span class="tag">debugging</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="ai">
+        <div class="card-header">
+          <div class="card-icon">✍️</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Smart Reply Generator</h3>
+        <p class="card-desc">Context-aware reply suggestions that learn your voice. Summarizes the incoming email before suggesting a draft response.</p>
+        <div class="card-tags">
+          <span class="tag">ai</span>
+          <span class="tag">email</span>
+          <span class="tag">nlp</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="ai">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Meeting Notes → Tasks</h3>
+        <p class="card-desc">Paste meeting notes or transcripts and extract action items, owners, and deadlines. Export to task manager.</p>
+        <div class="card-tags">
+          <span class="tag">ai</span>
+          <span class="tag">productivity</span>
+          <span class="tag">nlp</span>
         </div>
         <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
       </div>
@@ -294,6 +433,20 @@
         <div class="card-tags">
           <span class="tag">analytics</span>
           <span class="tag">insights</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="experiment">
+        <div class="card-header">
+          <div class="card-icon">🎨</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Email Template Builder</h3>
+        <p class="card-desc">WYSIWYG editor for common email templates. Variables, conditional sections, and one-click insert into compose window.</p>
+        <div class="card-tags">
+          <span class="tag">email</span>
+          <span class="tag">ui-builder</span>
         </div>
         <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
       </div>
