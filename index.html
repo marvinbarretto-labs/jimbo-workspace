@@ -3,18 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📧 Email Tools by Sift</title>
+  <title>🧠 Sift Workspace</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #667eea;
+      --primary-dark: #5a6fd8;
+      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --tag-bg: #e8e8e8;
+      --tag-text: #555;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #333;
+      background: var(--bg-gradient);
+      color: var(--text-main);
       padding: 40px 20px;
       min-height: 100vh;
     }
     .container {
-      max-width: 900px;
+      max-width: 1400px;
       margin: 0 auto;
     }
     header {
@@ -22,38 +32,126 @@
       color: white;
       margin-bottom: 40px;
     }
-    header h1 { font-size: 36px; margin-bottom: 10px; }
-    header p { font-size: 18px; opacity: 0.9; }
+    header h1 { font-size: 42px; margin-bottom: 8px; }
+    header p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+    
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      padding: 10px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: white;
+      color: var(--primary);
+      border-color: white;
+    }
+    
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
     }
     .card {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 28px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
     }
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     }
-    .card h2 { font-size: 20px; margin-bottom: 10px; color: #333; }
-    .card p { color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
-    .card a {
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .card-icon {
+      font-size: 32px;
+      margin-right: 12px;
+    }
+    .card-status {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-live { background: #d4edda; color: #155724; }
+    .status-beta { background: #fff3cd; color: #856404; }
+    .status-idea { background: #e2e3e5; color: #383d41; }
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+    }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .card-action {
       display: inline-block;
-      background: #667eea;
+      background: var(--primary);
       color: white;
       text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
       font-size: 14px;
-      transition: background 0.2s;
+      text-align: center;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: auto;
     }
-    .card a:hover { background: #5a6fd8; }
+    .card-action:hover { background: var(--primary-dark); }
+    .card-action:active { transform: scale(0.98); }
+    
+    .coming-soon {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .coming-soon .card-action {
+      background: #999;
+    }
+    
     footer {
       text-align: center;
       color: white;
@@ -61,50 +159,175 @@
       margin-top: 40px;
       font-size: 14px;
     }
+    .footer-links a { color: white; margin: 0 10px; text-decoration: underline; }
+    
+    @media (max-width: 768px) {
+      header h1 { font-size: 30px; }
+      .grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>📧 Email Tools by Sift</h1>
-      <p>Four experiments to help you manage your inbox smarter</p>
+      <h1>🧠 Sift Workspace</h1>
+      <p>Experimental tools for email intelligence and beyond. Built iteratively, deployed live.</p>
     </header>
 
-    <div class="grid">
-      <div class="card">
-        <h2>🔍 Redundancy Radar</h2>
-        <p>Detects duplicate emails across your subscriptions and helps you choose which source to keep. Clean up your reading queue.</p>
-        <a href="redundancy-radar.html">Open Tool</a>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="email">Email</button>
+      <button class="filter-btn" data-filter="productivity">Productivity</button>
+      <button class="filter-btn" data-filter="experiment">Experiments</button>
+      <button class="filter-btn" data-filter="diary">Development</button>
+    </div>
+
+    <div class="grid" id="tools-grid">
+      <!-- Live Tools -->
+      <div class="card" data-category="email">
+        <div class="card-header">
+          <div class="card-icon">🔍</div>
+          <span class="card-status status-live">Live</span>
+        </div>
+        <h3 class="card-title">Redundancy Radar</h3>
+        <p class="card-desc">Detects duplicate emails across subscriptions and helps choose which source to keep. Clean up your reading queue.</p>
+        <div class="card-tags">
+          <span class="tag">email</span>
+          <span class="tag">deduplication</span>
+        </div>
+        <a href="redundancy-radar.html" class="card-action">Open Tool</a>
       </div>
 
-      <div class="card">
-        <h2>🚀 Smart Unsubscriber</h2>
-        <p>Analyzes your newsletters and provides one-click unsubscribe buttons. Tame the inbox beast.</p>
-        <a href="smart-unsubscriber.html">Open Tool</a>
+      <div class="card" data-category="email">
+        <div class="card-header">
+          <div class="card-icon">🚀</div>
+          <span class="card-status status-live">Live</span>
+        </div>
+        <h3 class="card-title">Smart Unsubscriber</h3>
+        <p class="card-desc">Analyzes newsletters and provides one-click unsubscribe buttons. Tame the inbox beast with data.</p>
+        <div class="card-tags">
+          <span class="tag">email</span>
+          <span class="tag">automation</span>
+        </div>
+        <a href="smart-unsubscriber.html" class="card-action">Open Tool</a>
       </div>
 
-      <div class="card">
-        <h2>🎯 What Did I Miss?</h2>
-        <p>Queries skipped but high-reputation items. Find interesting emails you might have glossed over but would normally queue.</p>
-        <a href="what-did-i-miss.html">Open Tool</a>
+      <div class="card" data-category="productivity">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <span class="card-status status-live">Live</span>
+        </div>
+        <h3 class="card-title">What Did I Miss?</h3>
+        <p class="card-desc">Queries skipped but high-reputation items. Find interesting emails you glossed over but would normally queue.</p>
+        <div class="card-tags">
+          <span class="tag">productivity</span>
+          <span class="tag">learning-loop</span>
+        </div>
+        <a href="what-did-i-miss.html" class="card-action">Open Tool</a>
       </div>
 
-      <div class="card">
-        <h2>📊 Content Gaps</h2>
-        <p>Proactive subscription suggestions based on your interests. Discover quality newsletters you're missing.</p>
-        <a href="content-gaps.html">Open Tool</a>
+      <div class="card" data-category="productivity">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <span class="card-status status-live">Live</span>
+        </div>
+        <h3 class="card-title">Content Gaps</h3>
+        <p class="card-desc">Proactive subscription suggestions based on your interests. Discover quality newsletters you're missing.</p>
+        <div class="card-tags">
+          <span class="tag">productivity</span>
+          <span class="tag">recommendations</span>
+        </div>
+        <a href="content-gaps.html" class="card-action">Open Tool</a>
       </div>
 
-      <div class="card">
-        <h2>📔 Jimbo's Diary</h2>
-        <p>Read my development diary: learnings, ideas, and reflections while building Sift and these experiments.</p>
-        <a href="https://github.com/marvinbarretto-labs/jimbo-workspace/blob/master/JIMBO_DIARY.md" target="_blank">Read Diary</a>
+      <!-- Development & Ideas -->
+      <div class="card" data-category="diary">
+        <div class="card-header">
+          <div class="card-icon">📔</div>
+          <span class="card-status status-beta">Ongoing</span>
+        </div>
+        <h3 class="card-title">Jimbo's Diary</h3>
+        <p class="card-desc">Development diary: learnings, ideas, and reflections while building Sift and experiments.</p>
+        <div class="card-tags">
+          <span class="tag">development</span>
+          <span class="tag">log</span>
+        </div>
+        <a href="https://github.com/marvinbarretto-labs/jimbo-workspace/blob/master/JIMBO_DIARY.md" target="_blank" class="card-action">Read Diary</a>
+      </div>
+
+      <!-- Coming Soon / Ideas -->
+      <div class="card coming-soon" data-category="experiment">
+        <div class="card-header">
+          <div class="card-icon">💡</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Inbox Zero Timer</h3>
+        <p class="card-desc">Pomodoro-style timer with email processing bursts. Track time spent and celebrate clean inbox milestones.</p>
+        <div class="card-tags">
+          <span class="tag">productivity</span>
+          <span class="tag">timer</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="experiment">
+        <div class="card-header">
+          <div class="card-icon">🤖</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Auto-Responder Lab</h3>
+        <p class="card-desc">Template builder for smart auto-replies with vacation detection and sender reputation gating.</p>
+        <div class="card-tags">
+          <span class="tag">automation</span>
+          <span class="tag">email</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
+      </div>
+
+      <div class="card coming-soon" data-category="experiment">
+        <div class="card-header">
+          <div class="card-icon">📈</div>
+          <span class="card-status status-idea">Idea</span>
+        </div>
+        <h3 class="card-title">Email Analytics</h3>
+        <p class="card-desc">Visualize your email habits: response times, top senders, busiest hours, and reading velocity trends.</p>
+        <div class="card-tags">
+          <span class="tag">analytics</span>
+          <span class="tag">insights</span>
+        </div>
+        <a href="#" class="card-action" onclick="return false;">Coming Soon</a>
       </div>
     </div>
 
     <footer>
-      Built with curiosity. Deployed with GitHub Pages.
+      <div class="footer-links">
+        <a href="https://github.com/marvinbarretto-labs/jimbo-workspace" target="_blank">GitHub Repo</a>
+        <a href="https://github.com/marvinbarretto-labs/jimbo-workspace/blob/master/JIMBO_DIARY.md" target="_blank">Dev Diary</a>
+      </div>
+      <p style="margin-top: 12px;">Built by Jimbo • Deployed with GitHub Pages</p>
     </footer>
   </div>
+
+  <script>
+    // Category filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.filter;
+        
+        cards.forEach(card => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
