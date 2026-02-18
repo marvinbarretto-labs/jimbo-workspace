@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Gaps</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+    h1 { font-size: 28px; margin-bottom: 10px; color: #1a1a1a; }
+    .subtitle { color: #666; margin-bottom: 25px; font-style: italic; }
+    .explanation {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+    .explanation strong { display: block; margin-bottom: 5px; font-size: 16px; }
+    .stats-bar {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 150px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+    .stat-value { font-size: 32px; font-weight: 700; color: #667eea; }
+    .stat-label { font-size: 13px; color: #666; margin-top: 5px; }
+    .topic-section { margin-bottom: 30px; }
+    .topic-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+    }
+    .topic-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+    .topic-stats {
+      font-size: 13px;
+      color: #666;
+    }
+    .gap-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+    .gap-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    }
+    .gap-source {
+      font-weight: 600;
+      color: #667eea;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    .gap-description {
+      color: #555;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    .gap-reputation {
+      display: flex;
+      gap: 15px;
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+    .rep-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .rep-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #28a745;
+    }
+    .actions { display: flex; gap: 8px; }
+    .btn {
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-subscribe { background: #667eea; color: white; }
+    .btn-subscribe:hover { background: #5a6fd8; transform: translateY(-1px); }
+    .btn-learn { background: #e2e6ea; color: #333; }
+    .btn-learn:hover { background: #dbe0e5; }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #28a745;
+      background: #e6ffed;
+      border-radius: 10px;
+    }
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: #667eea;
+    }
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Content Gaps</h1>
+    <p class="subtitle">Proactive subscription suggestions based on what you already read</p>
+
+    <div class="explanation">
+      <strong>How this works:</strong> Sift analyzes the topics you queue most, then finds reputable newsletters you're missing.
+      It looks for sources that experts in your favorite topics recommend but you haven't subscribed to yet.
+    </div>
+
+    <div id="loading" class="loading">
+      <div class="loading-spinner"></div>
+      <p>Scanning your reading patterns and finding gaps...</p>
+    </div>
+
+    <div id="content" style="display: none;">
+      <div class="stats-bar" id="stats"></div>
+      <div id="topics"></div>
+    </div>
+  </div>
+
+  <script>
+    // Simulated data: your current subscriptions and topic interests
+    const yourSubscriptions = [
+      { source: 'Bytes.dev', topics: ['tech/frontend', 'tech/react'] },
+      { source: 'Firebase Blog', topics: ['tech/backend', 'firebase'] },
+      { source: 'TypeScript Weekly', topics: ['tech/languages', 'typescript'] },
+    ];
+
+    const allYourTopics = [...new Set(yourSubscriptions.flatMap(s => s.topics))];
+
+    // Database of potential newsletters to subscribe to
+    const newsletterDatabase = [
+      { source: 'React Status', topics: ['tech/frontend', 'tech/react'], reputation: 0.91, subscribers: 15000, description: 'Weekly React news, patterns, and deep dives from the community.' },
+      { source: 'Frontend Focus', topics: ['tech/frontend', 'css', 'javascript'], reputation: 0.94, subscribers: 22000, description: 'Curated frontend links: CSS tricks, JS frameworks, and performance tips.' },
+      { source: 'Node Weekly', topics: ['tech/backend', 'nodejs', 'javascript'], reputation: 0.90, subscribers: 18000, description: 'Node.js ecosystem news, packages, and best practices.' },
+      { source: 'Serverless Status', topics: ['tech/backend', 'serverless', 'cloud'], reputation: 0.87, subscribers: 8000, description: 'Serverless architectures, AWS Lambda, and cloud functions.' },
+      { source: 'Python Weekly', topics: ['tech/languages', 'python', 'data-science'], reputation: 0.93, subscribers: 35000, description: 'Python news, libraries, and tutorials from around the web.' },
+      { source: 'Tech London', topics: ['event', ' London', 'tech/community'], reputation: 0.71, subscribers: 5000, description: 'Local meetups, conferences, and tech events in London.' },
+    ];
+
+    // Find gaps: newsletters you're NOT subscribed to but cover topics you love
+    const gaps = newsletterDatabase.filter(nl => {
+      // You're not already subscribed
+      const alreadySubscribed = yourSubscriptions.some(s => s.source === nl.source);
+      if (alreadySubscribed) return false;
+
+      // It covers at least one of your topics
+      return nl.topics.some(topic => allYourTopics.includes(topic));
+    });
+
+    // Group by the primary topic match
+    const gapsByTopic = {};
+    gaps.forEach(gap => {
+      const matchedTopic = gap.topics.find(t => allYourTopics.includes(t));
+      if (!gapsByTopic[matchedTopic]) gapsByTopic[matchedTopic] = [];
+      gapsByTopic[matchedTopic].push(gap);
+    });
+
+    // Sort topics by your interest level (number of subscriptions covering them)
+    const sortedTopics = Object.keys(gapsByTopic).sort((a, b) => {
+      const aCoverage = yourSubscriptions.filter(s => s.topics.includes(a)).length;
+      const bCoverage = yourSubscriptions.filter(s => s.topics.includes(b)).length;
+      return bCoverage - aCoverage;
+    });
+
+    function formatNumber(num) {
+      if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+      return num.toString();
+    }
+
+    function renderStats() {
+      const statsDiv = document.getElementById('stats');
+      const totalSubs = yourSubscriptions.length;
+      const totalGaps = gaps.length;
+      const topicCount = sortedTopics.length;
+
+      statsDiv.innerHTML = `
+        <div class="stat-card">
+          <div class="stat-value">${totalSubs}</div>
+          <div class="stat-label">Current Subscriptions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${totalGaps}</div>
+          <div class="stat-label">Content Gaps Found</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${topicCount}</div>
+          <div class="stat-label">Topics Covered</div>
+        </div>
+      `;
+    }
+
+    function renderTopics() {
+      const topicsDiv = document.getElementById('topics');
+      let html = '';
+
+      sortedTopics.forEach(topic => {
+        const topicGaps = gapsByTopic[topic].sort((a, b) => b.reputation - a.reputation);
+        html += `
+          <div class="topic-section">
+            <div class="topic-header">
+              <div class="topic-name">${topic}</div>
+              <div class="topic-stats">${topicGaps.length} suggestions</div>
+            </div>
+        `;
+
+        topicGaps.forEach(gap => {
+          html += `
+            <div class="gap-card">
+              <div class="gap-source">${gap.source}</div>
+              <div class="gap-description">${gap.description}</div>
+              <div class="gap-reputation">
+                <div class="rep-item"><span class="rep-dot"></span> Reputation: ${Math.round(gap.reputation * 100)}%</div>
+                <div class="rep-item">👥 ${formatNumber(gap.subscribers)} subscribers</div>
+              </div>
+              <div class="actions">
+                <button class="btn btn-subscribe" onclick="subscribe('${gap.source}')">Subscribe</button>
+                <button class="btn btn-learn" onclick="learnMore('${gap.source}')">Learn More</button>
+              </div>
+            </div>
+          `;
+        });
+
+        html += '</div>';
+      });
+
+      topicsDiv.innerHTML = html;
+    }
+
+    function subscribe(source) {
+      alert(`✅ Subscribed to ${source}!\n\nIn a real implementation, this would add it to your subscriptions list.`);
+    }
+
+    function learnMore(source) {
+      alert(`📖 Learn more about ${source}\n\nThis would open the newsletter's website or show sample issues.`);
+    }
+
+    // Simulate loading then render
+    setTimeout(() => {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      renderStats();
+      renderTopics();
+    }, 1500);
+  </script>
+</body>
+</html>
