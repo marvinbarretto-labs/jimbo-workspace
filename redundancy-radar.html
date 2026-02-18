@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redundancy Radar Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+    .duplicate { background: #f8f9fa; border-left: 4px solid #ffc107; padding: 1rem; margin: 0.5rem 0; }
+    .source { font-weight: bold; color: #0066cc; }
+    .analysis { background: #e3f2fd; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+    .choice { margin: 0.5rem 0; }
+    button { margin: 0.25rem; padding: 0.5rem 1rem; cursor: pointer; }
+    .result { background: #d4edda; padding: 1rem; margin-top: 1rem; border-radius: 4px; }
+    h1 { color: #333; }
+    code { background: #f4f4f4; padding: 0.2rem 0.4rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Redundancy Radar</h1>
+  <p>I've detected that the same article topic has appeared in multiple newsletters over the last week:</p>
+
+  <div id="duplicates"></div>
+
+  <div class="analysis">
+    <strong>Analysis:</strong>
+    <ul>
+      <li>All <span class="choice">4 articles cover the same core story</span> (React 19 Server Actions stable)</li>
+      <li>Total reading time if you read all: ~16 minutes</li>
+      <li>You only need to read ONE of them to get the key insights</li>
+    </ul>
+  </div>
+
+  <p><strong>💡 Suggestion:</strong> Keep only your preferred source and let me auto-skip the others in future digests.</p>
+
+  <h3>Marv, which source would you like to keep?</h3>
+  <div id="choices"></div>
+
+  <div id="result" class="result" style="display:none;"></div>
+
+  <script>
+    const duplicates = [
+      { source: 'Bytes.dev', title: 'React 19 Server Actions are now stable', url: 'https://bytes.dev/react-19' },
+      { source: 'JavaScript Weekly', title: 'React 19: Server Actions production ready', url: 'https://jsweekly.com/react-19' },
+      { source: 'Frontend Focus', title: 'Server Actions in React 19: What you need to know', url: 'https://frontendfocus.com/react-19' },
+      { source: 'Hacker Newsletter', title: 'React 19 stability: Server Actions edition', url: 'https://hackernewsletter.com/react-19' }
+    ];
+
+    const containers = { duplicates: document.getElementById('duplicates'), choices: document.getElementById('choices'), result: document.getElementById('result') };
+
+    duplicates.forEach((d, i) => {
+      containers.duplicates.innerHTML += `
+        <div class="duplicate">
+          <span class="source">${i+1}. ${d.source}</span> — "${d.title}"<br>
+          <small>${d.url}</small>
+        </div>`;
+    });
+
+    const choices = [
+      { id: 1, text: 'Bytes.dev (your most-queued newsletter)' },
+      { id: 2, text: 'JavaScript Weekly (highest open rate)' },
+      { id: 3, text: 'Frontend Focus (local relevance to your projects)' },
+      { id: 4, text: 'Hacker Newsletter (broad audience)' },
+      { id: 5, text: 'Actually, I want to keep ALL of them (different angles)' },
+      { id: 6, text: 'Unsubscribe from all of them (I\'ll follow this topic elsewhere)' }
+    ];
+
+    choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.textContent = c.text;
+      btn.onclick = () => handleChoice(c.id);
+      containers.choices.appendChild(btn);
+    });
+
+    function handleChoice(id) {
+      let resultText = '';
+      if (id === 1) {
+        resultText = `✅ Done! I'll add a rule: when duplicate "React server" stories appear, prioritize Bytes.dev and auto-skip the others. Override rule: if you specifically queue one of the others, I'll still present it.`;
+      } else if (id === 5) {
+        resultText = `📚 Okay, I'll keep all sources. I'll still try to dedupe at the article level if they're exact matches, but you'll see different perspectives.`;
+      } else if (id === 6) {
+        resultText = `✂️ Unsubscribing from all 4 newsletters. This topic will be missed. I can always resubscribe if you ask.`;
+      } else {
+        resultText = `✅ Setting preference: ${choices[id-1].text.split(' ')[0]} is now your preferred source for this topic. I'll boost it and skip the rest.`;
+      }
+      containers.result.innerHTML = resultText;
+      containers.result.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
