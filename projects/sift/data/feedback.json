@@ -1,10 +1,123 @@
 {
-  "signals": [],
+  "signals": [
+    {
+      "item_id": "msg_9d49aaf7e301",
+      "sender": "orders@jdwetherspoon.com",
+      "category": "transactional",
+      "signal": "queue",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_2c20e984e9d2",
+      "sender": "newsletter@mustreads.com",
+      "category": "newsletter",
+      "signal": "queue",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_7f6727b8f36c",
+      "sender": "gm@milkroad.com",
+      "category": "newsletter",
+      "signal": "queue",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_fe54d5e23937",
+      "sender": "hello@theneurondaily.com",
+      "category": "tech",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_048bd939ae2c",
+      "sender": "newsletter@winstonmarshall.com",
+      "category": "newsletter",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_90add2304c5f",
+      "sender": "marc@frontendmasters.com",
+      "category": "tech",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_74b2094889dd",
+      "sender": "ahoy@holidaypirates.com",
+      "category": "deals",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_4df8fab9e555",
+      "sender": "noreply@google.com",
+      "category": "deals",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_1d98a04a967f",
+      "sender": "developer@apple.com",
+      "category": "event",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_1d4083351611",
+      "sender": "hello@yourwestwatford.co.uk",
+      "category": "local",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_98b65f319f4d",
+      "sender": "news@urbanscoop.com",
+      "category": "local",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_8ff9821c5936",
+      "sender": "tips@moneysavingexpert.com",
+      "category": "deals",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_a1a27b209007",
+      "sender": "taproom@madsquirrel.uk",
+      "category": "event",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_64e5f836f529",
+      "sender": "hello@feverup.com",
+      "category": "event",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_8618056897b1",
+      "sender": "noreply@parkrun.com",
+      "category": "event",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    },
+    {
+      "item_id": "msg_b6075b533b7d",
+      "sender": "team@joinzoe.com",
+      "category": "newsletter",
+      "signal": "skip",
+      "timestamp": "2026-02-18T00:06:28.488Z"
+    }
+  ],
   "stats": {
-    "total_presented": 18,
-    "total_queued": 0,
-    "total_skipped": 0,
-    "hit_rate": 0
+    "total_presented": 16,
+    "total_queued": 3,
+    "total_skipped": 13,
+    "hit_rate": 0.1875
   },
   "sender_reputation": {},
   "topic_patterns": {}

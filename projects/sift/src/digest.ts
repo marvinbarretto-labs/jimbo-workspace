@@ -86,7 +86,7 @@ export class DigestFormatter {
   }
 
   formatDigest(digest: EmailDigest): string {
-    const output = `Morning! ${digest.total_items} emails on ${digest.date} — here's what matters:\n\n`;
+    const seenSenders = new Set<string>();
     const itemsByCat = new Map<string, EmailDigest['items']>();
     for (const item of digest.items) {
       const key = `${item.category}/${item.subcategory}`;
@@ -96,17 +96,35 @@ export class DigestFormatter {
 
     let itemNumber = 1;
     const presentedItems: EmailDigest['items'] = [];
-    let result = '';
+    let result = `Morning! ${digest.total_items} emails on ${digest.date} — here's what matters:\n\n`;
 
     for (const [catKey, items] of itemsByCat) {
-      const filtered = items.filter(it => it.suggested_action !== 'skip' && it.suggested_action !== 'unsubscribe_candidate');
+      // Filter items with auto-skip rules
+      const filtered: EmailItem[] = [];
+      for (const item of items) {
+        // Auto-skip based on suggested_action
+        if (item.suggested_action === 'skip' || item.suggested_action === 'unsubscribe_candidate') continue;
+
+        // Auto-skip LinkedIn transactional notifications
+        if (item.category === 'transactional' && item.sender.email.toLowerCase().includes('linkedin.com')) continue;
+
+        // Auto-skip duplicate senders (keep first occurrence only)
+        if (seenSenders.has(item.sender.email)) continue;
+
+        seenSenders.add(item.sender.email);
+        filtered.push(item);
+      }
       if (filtered.length === 0) continue;
+
       const [cat, sub] = catKey.split('/');
       result += `${this.getCategoryEmoji(cat)} ${cat}/${sub}\n`;
 
       for (const item of filtered) {
         const relevance = this.calculateRelevance(item);
-        const badge = relevance > 25 ? '★' : '';
+        let badge = relevance > 25 ? '★' : '';
+        if (item.confidence < 0.5) {
+          badge = badge ? `${badge} ⚠` : '⚠';
+        }
         result += `${itemNumber}. ${badge} ${item.sender.name} — "${item.subject}" (${item.time_estimate_min}min)\n`;
         result += `   [${item.links[0] || '🔗'}] | ${item.summary}\n\n`;
         if (item.subcategory) result += `   (${item.subcategory})\n`;
@@ -115,6 +133,7 @@ export class DigestFormatter {
       }
     }
 
+    // Wildcard placeholder
     result += `\n🎁 Wildcard: ...\n\n`;
 
     const totalQueue = this.queue.reduce((sum, it) => sum + it.time_min, 0);
@@ -126,26 +145,23 @@ export class DigestFormatter {
     result += `Queue total: ${formatMinutes(totalQueue)} / ${this.config.budget_minutes}min budget\n\n`;
     result += `Your call? "queue 1,3" / "skip all" / "details on #?"`;
 
-    this.feedback.stats.total_presented += presentedItems.length;
-    fs.writeFileSync(path.join(this.config.state_path, 'feedback.json'), JSON.stringify(this.feedback, null, 2));
+    // Save presented items for later response parsing
+    try {
+      fs.writeFileSync(path.join(this.config.state_path, 'presented.json'), JSON.stringify(presentedItems, null, 2));
+    } catch (e) {
+      // ignore write errors, not critical
+    }
 
     return result;
   }
 
-  parseResponse(response: string, presentedItems: EmailDigest['items']): { queued: number; skipped: number; message: string } {
+  parseResponse(response: string, presentedItems: EmailItem[]): { queued: number; skipped: number; message: string } {
     const lower = response.toLowerCase().trim();
     let queuedIndices: number[] = [];
-    let skippedCount = 0;
 
-    if (lower.includes('queue all') || lower.includes('all')) {
+    // Order matters: check range before generic digit list
+    if (lower === 'all' || lower.includes('queue all')) {
       queuedIndices = presentedItems.map((_, i) => i + 1);
-    } else if (lower.includes('skip all')) {
-      skippedCount = presentedItems.length;
-    } else if (lower.match(/queue\s+[\d,\s]+/)) {
-      const match = lower.match(/queue\s+([\d,\s]+)/);
-      if (match) {
-        queuedIndices = match[1].split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n) && n > 0);
-      }
     } else if (lower.match(/queue\s+\d+-\d+/)) {
       const match = lower.match(/queue\s+(\d+)-(\d+)/);
       if (match) {
@@ -153,10 +169,17 @@ export class DigestFormatter {
         const end = parseInt(match[2]);
         for (let i = start; i <= end; i++) queuedIndices.push(i);
       }
+    } else if (lower.match(/queue\s+[\d,\s]+/)) {
+      const match = lower.match(/queue\s+([\d,\s]+)/);
+      if (match) {
+        queuedIndices = match[1].split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n) && n > 0);
+      }
     }
+    // If none matched, queuedIndices stays empty → all skipped
 
     const now = new Date().toISOString();
     let queuedCount = 0;
+    let skippedCount = 0;
 
     for (let i = 0; i < presentedItems.length; i++) {
       const item = presentedItems[i];
@@ -180,7 +203,8 @@ export class DigestFormatter {
           signal: 'queue',
           timestamp: now
         });
-      } else if (!queuedIndices.length && skippedCount === 0) {
+      } else {
+        // Not explicitly queued → skip
         skippedCount++;
         this.appendSignal({
           item_id: item.id,

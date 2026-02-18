@@ -1,5 +1,36 @@
 {
-  "queue": [],
-  "total_time_min": 0,
+  "queue": [
+    {
+      "id": "msg_9d49aaf7e301",
+      "title": "Your order #4821 is ready for collection",
+      "category": "transactional",
+      "time_min": 1,
+      "link": "",
+      "added": "2026-02-18T00:06:28.488Z",
+      "source_email": "JD Wetherspoon",
+      "status": "queued"
+    },
+    {
+      "id": "msg_2c20e984e9d2",
+      "title": "The Value Rotation Is Here: How To Position Your Portfolio",
+      "category": "newsletter",
+      "time_min": 5,
+      "link": "https://mustreads.com/value-rotation",
+      "added": "2026-02-18T00:06:28.488Z",
+      "source_email": "Must Reads",
+      "status": "queued"
+    },
+    {
+      "id": "msg_7f6727b8f36c",
+      "title": "Bitcoin just hit $120k — now what?",
+      "category": "newsletter",
+      "time_min": 3,
+      "link": "https://milkroad.com/btc-120k",
+      "added": "2026-02-18T00:06:28.488Z",
+      "source_email": "Milk Road",
+      "status": "queued"
+    }
+  ],
+  "total_time_min": 9,
   "budget_limit_min": 120
 }

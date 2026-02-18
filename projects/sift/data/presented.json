@@ -1,0 +1,394 @@
+[
+  {
+    "id": "msg_9d49aaf7e301",
+    "date": "2026-02-17T21:52:05+00:00",
+    "sender": {
+      "name": "JD Wetherspoon",
+      "email": "orders@jdwetherspoon.com"
+    },
+    "subject": "Your order #4821 is ready for collection",
+    "category": "transactional",
+    "subcategory": "order confirmation",
+    "keywords": [
+      "Wetherspoon",
+      "order ready",
+      "Fish & Chips"
+    ],
+    "summary": "A transactional email confirming an order at JD Wetherspoon, including details of the items ordered and location for collection.",
+    "time_estimate_min": 1,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.95,
+    "body_snippet": "Hi Marvin, your order #4821 at The Moon Under Water (Watford) is ready. Please collect from the bar. Order includes: 1x Fish & Chips, 1x Doom Bar. Total: �12.49. Thanks for using the Wetherspoon app.",
+    "links": []
+  },
+  {
+    "id": "msg_2c20e984e9d2",
+    "date": "2026-02-17T19:52:05+00:00",
+    "sender": {
+      "name": "Must Reads",
+      "email": "newsletter@mustreads.com"
+    },
+    "subject": "The Value Rotation Is Here: How To Position Your Portfolio",
+    "category": "newsletter",
+    "subcategory": "finance",
+    "keywords": [
+      "portfolio",
+      "value rotation",
+      "stocks"
+    ],
+    "summary": "This email discusses the current market shift from growth to value stocks and provides insights for portfolio positioning.",
+    "time_estimate_min": 5,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.9,
+    "body_snippet": "This week's big story: the rotation from growth to value is accelerating. We break down what it means for your portfolio, which sectors are leading, and three stocks that look undervalued heading into",
+    "links": [
+      "https://mustreads.com/value-rotation"
+    ]
+  },
+  {
+    "id": "msg_7f6727b8f36c",
+    "date": "2026-02-17T18:52:05+00:00",
+    "sender": {
+      "name": "Milk Road",
+      "email": "gm@milkroad.com"
+    },
+    "subject": "Bitcoin just hit $120k — now what?",
+    "category": "newsletter",
+    "subcategory": "tech",
+    "keywords": [
+      "Bitcoin",
+      "ETF",
+      "institutional adoption"
+    ],
+    "summary": "Milk Road's tech-focused newsletter discusses Bitcoin's price surge and the factors driving it.",
+    "time_estimate_min": 3,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.95,
+    "body_snippet": "GM! Bitcoin smashed through $120k overnight. Here's what's driving it: ETF inflows hit $2.1B this week, institutional adoption is accelerating, and the halving effect is kicking in. But is it time to",
+    "links": [
+      "https://milkroad.com/btc-120k"
+    ]
+  },
+  {
+    "id": "msg_fe54d5e23937",
+    "date": "2026-02-17T17:52:05+00:00",
+    "sender": {
+      "name": "The Neuron",
+      "email": "hello@theneurondaily.com"
+    },
+    "subject": "OpenAI just dropped GPT-5 — here's what changed",
+    "category": "tech",
+    "subcategory": "developer",
+    "keywords": [
+      "GPT-5",
+      "OpenAI",
+      "reasoning"
+    ],
+    "summary": "The Neuron Daily provides an overview of the new GPT-5 model, which has significant improvements in reasoning and multimodal capabilities.",
+    "time_estimate_min": 5,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.9,
+    "body_snippet": "OpenAI announced GPT-5 yesterday with significant improvements in reasoning and multimodal capabilities. The model scores 92% on MMLU and introduces native tool use. We tested it against Claude and Ge",
+    "links": [
+      "https://theneurondaily.com/gpt5-review"
+    ]
+  },
+  {
+    "id": "msg_048bd939ae2c",
+    "date": "2026-02-17T15:52:05+00:00",
+    "sender": {
+      "name": "Winston Marshall",
+      "email": "newsletter@winstonmarshall.com"
+    },
+    "subject": "The Free Speech Paradox",
+    "category": "newsletter",
+    "subcategory": "tech local",
+    "keywords": [
+      "free speech",
+      "digital age",
+      "moderation"
+    ],
+    "summary": "Winston Marshall discusses free speech paradox in digital context with a constitutional lawyer, covering Section 230 and platform moderation. Local focus on campus protests.",
+    "time_estimate_min": 5,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.85,
+    "body_snippet": "This week I sat down with a constitutional lawyer to discuss the limits of free expression in the digital age. We covered Section 230, the EU's Digital Services Act, and why platform moderation is har",
+    "links": []
+  },
+  {
+    "id": "msg_90add2304c5f",
+    "date": "2026-02-17T14:52:05+00:00",
+    "sender": {
+      "name": "Marc at Frontend Masters",
+      "email": "marc@frontendmasters.com"
+    },
+    "subject": "Engineers from Netflix, Anthropic, Spotify & Vercel teaching live workshops",
+    "category": "tech",
+    "subcategory": "workshops",
+    "keywords": [
+      "workshops",
+      "live",
+      "engineering"
+    ],
+    "summary": "Frontend Masters announces live workshops with engineers from major tech companies.",
+    "time_estimate_min": 5,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.9,
+    "body_snippet": "New live workshops announced! Learn from engineers at Netflix (React perf), Anthropic (AI-powered apps), Spotify (design systems), and Vercel (Next.js 15). Early bird pricing available. These workshop",
+    "links": [
+      "https://frontendmasters.com/workshops/"
+    ]
+  },
+  {
+    "id": "msg_74b2094889dd",
+    "date": "2026-02-17T13:52:05+00:00",
+    "sender": {
+      "name": "HolidayPirates",
+      "email": "ahoy@holidaypirates.com"
+    },
+    "subject": "🏖️ Algarve from £149 return — this weekend only",
+    "category": "deals",
+    "subcategory": "travel",
+    "keywords": [
+      "Algarve",
+      "deal",
+      "return"
+    ],
+    "summary": "An email promoting travel deals for half-term including Algarve from £149 return.",
+    "time_estimate_min": 2,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.85,
+    "body_snippet": "Ahoy! We found incredible deals for half term: Algarve from �149 return, Tenerife all-inclusive from �399pp, and a 5* Marrakech riad for �62/night. Book before midnight Sunday. https://holidaypirates.",
+    "links": [
+      "https://holidaypirates.com/deals"
+    ]
+  },
+  {
+    "id": "msg_4df8fab9e555",
+    "date": "2026-02-17T11:52:05+00:00",
+    "sender": {
+      "name": "Google Flights",
+      "email": "noreply@google.com"
+    },
+    "subject": "Price drop: London to Lisbon from £43",
+    "category": "deals",
+    "subcategory": "travel",
+    "keywords": [
+      "price drop",
+      "London to Lisbon",
+      "Wizz Air"
+    ],
+    "summary": "Google Flights notifies of a significant price reduction for a flight from London Luton to Lisbon.",
+    "time_estimate_min": 1,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.95,
+    "body_snippet": "A tracked flight price has dropped. London Luton to Lisbon, March 14-18, is now �43 one way with Wizz Air. This is 38% lower than usual. https://flights.google.com/tracked",
+    "links": [
+      "https://flights.google.com/tracked"
+    ]
+  },
+  {
+    "id": "msg_1d98a04a967f",
+    "date": "2026-02-17T12:52:05+00:00",
+    "sender": {
+      "name": "Apple Developer",
+      "email": "developer@apple.com"
+    },
+    "subject": "WWDC26 registration is now open",
+    "category": "event",
+    "subcategory": "conference",
+    "keywords": [
+      "WWDC26",
+      "registration",
+      "developer"
+    ],
+    "summary": "Apple is inviting developers to register for WWDC26, featuring sessions on new technologies and a keynote livestream.",
+    "time_estimate_min": 5,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.9,
+    "body_snippet": "Join us for WWDC26, June 9-13. This year's conference features sessions on visionOS 3, Swift 6.2, and major updates to Xcode. Apply for a scholarship or register for the free online experience. Keynot",
+    "links": [
+      "https://developer.apple.com/wwdc26/"
+    ]
+  },
+  {
+    "id": "msg_1d4083351611",
+    "date": "2026-02-17T10:52:05+00:00",
+    "sender": {
+      "name": "Your West Watford",
+      "email": "hello@yourwestwatford.co.uk"
+    },
+    "subject": "New café opening on High Street + road closure update",
+    "category": "local",
+    "subcategory": "community",
+    "keywords": [
+      "café",
+      "road closure",
+      "Watford"
+    ],
+    "summary": "Updates on a new café opening and road closures in Watford High Street.",
+    "time_estimate_min": 2,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.95,
+    "body_snippet": "A new independent caf�, The Grind, is opening on Watford High Street next week. Also: temporary road closures on Vicarage Road for resurfacing work, affecting the WFC matchday route. Community litter",
+    "links": []
+  },
+  {
+    "id": "msg_98b65f319f4d",
+    "date": "2026-02-17T08:52:05+00:00",
+    "sender": {
+      "name": "Urban Scoop",
+      "email": "news@urbanscoop.com"
+    },
+    "subject": "Watford Council approves 500 new homes near station",
+    "category": "local",
+    "subcategory": "community",
+    "keywords": [
+      "Watford",
+      "Council",
+      "Homes"
+    ],
+    "summary": "Watford Borough Council has approved plans for 500 new homes near Watford Junction, including affordable housing and improved cycling infrastructure.",
+    "time_estimate_min": 2,
+    "project_relevance": "localshout",
+    "suggested_action": "queue",
+    "confidence": 0.9,
+    "body_snippet": "Watford Borough Council has approved plans for 500 new homes near Watford Junction. The development includes affordable housing, a community centre, and improved cycling infrastructure. Residents have",
+    "links": [
+      "https://urbanscoop.com/watford-junction-development"
+    ]
+  },
+  {
+    "id": "msg_8ff9821c5936",
+    "date": "2026-02-17T09:52:05+00:00",
+    "sender": {
+      "name": "MSE Money Tips",
+      "email": "tips@moneysavingexpert.com"
+    },
+    "subject": "Cheapest energy fix ever? Lock in now before April",
+    "category": "deals",
+    "subcategory": "money saving",
+    "keywords": [
+      "energy",
+      "savings",
+      "cashback"
+    ],
+    "summary": "An email from MSE Money Tips about potential savings on energy and a cashback credit card offer.",
+    "time_estimate_min": 2,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.95,
+    "body_snippet": "Martin's team has found the cheapest energy fix in months. With the price cap rising in April, fixing now could save you �200/year. Plus: the cashback credit card trick that earns �100+, and why your",
+    "links": [
+      "https://moneysavingexpert.com/energy"
+    ]
+  },
+  {
+    "id": "msg_a1a27b209007",
+    "date": "2026-02-17T07:52:05+00:00",
+    "sender": {
+      "name": "Mad Squirrel",
+      "email": "taproom@madsquirrel.uk"
+    },
+    "subject": "New IPA on tap + Friday night quiz",
+    "category": "event",
+    "subcategory": "pub quiz",
+    "keywords": [
+      "IPA",
+      "taproom",
+      "quiz"
+    ],
+    "summary": "The Mad Squirrel taproom in Watford has a new IPA and is hosting a Friday night pub quiz.",
+    "time_estimate_min": 1,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.85,
+    "body_snippet": "Our latest IPA, Canopy Crawler (6.2% ABV), is now on tap at the Watford taproom. Plus: Friday night pub quiz returns, 7:30pm start. Teams of up to 6. Book your table: https://madsquirrel.uk/events",
+    "links": [
+      "https://madsquirrel.uk/events"
+    ]
+  },
+  {
+    "id": "msg_64e5f836f529",
+    "date": "2026-02-17T06:52:05+00:00",
+    "sender": {
+      "name": "Fever",
+      "email": "hello@feverup.com"
+    },
+    "subject": "Candlelight concerts in London this March",
+    "category": "event",
+    "subcategory": "tickets",
+    "keywords": [
+      "concerts",
+      "London",
+      "candlelight"
+    ],
+    "summary": "Promotions for candlelit concerts in London scheduled for March.",
+    "time_estimate_min": 5,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.9,
+    "body_snippet": "Experience live music by candlelight at stunning London venues. This March: Vivaldi's Four Seasons at St Martin-in-the-Fields, Coldplay tribute at Southwark Cathedral, and a jazz evening at KOKO. Tick",
+    "links": [
+      "https://feverup.com/london/candlelight"
+    ]
+  },
+  {
+    "id": "msg_8618056897b1",
+    "date": "2026-02-17T02:52:05+00:00",
+    "sender": {
+      "name": "parkrun",
+      "email": "noreply@parkrun.com"
+    },
+    "subject": "Your weekly parkrun results — Cassiobury parkrun",
+    "category": "event",
+    "subcategory": "run",
+    "keywords": [
+      "parkrun",
+      "results",
+      "Cassiobury"
+    ],
+    "summary": "A notification about the user's performance at a recent parkrun event.",
+    "time_estimate_min": 1,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.95,
+    "body_snippet": "Congratulations on completing Cassiobury parkrun #347! Your time: 24:12. That's a new PB! 312 runners took part. Course record: 15:41. See full results: https://parkrun.org.uk/cassiobury/results/",
+    "links": [
+      "https://parkrun.org.uk/cassiobury/results/"
+    ]
+  },
+  {
+    "id": "msg_b6075b533b7d",
+    "date": "2026-02-17T00:52:05+00:00",
+    "sender": {
+      "name": "ZOE",
+      "email": "team@joinzoe.com"
+    },
+    "subject": "Your gut health score + new recipes",
+    "category": "newsletter",
+    "subcategory": "health",
+    "keywords": [
+      "gut health",
+      "score",
+      "recipes"
+    ],
+    "summary": "ZOE sends a monthly newsletter with updates on gut health scores and new recipes.",
+    "time_estimate_min": 5,
+    "project_relevance": null,
+    "suggested_action": "queue",
+    "confidence": 0.9,
+    "body_snippet": "Your latest gut health score is 78/100 (up from 71 last month!). Your top gut-boosting foods this week: kimchi, kefir, and sourdough. Try our new fermented beetroot recipe. Also: Prof Tim Spector's la",
+    "links": []
+  }
+]
